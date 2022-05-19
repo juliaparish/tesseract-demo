@@ -1,0 +1,58 @@
+---
+title: "Untitled"
+author: "Julia Parish"
+date: '2022-05-18'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(magick)
+library(tesseract)
+```
+
+```{r}
+# magick
+img <- image_read("chicken-wings.jpg")
+image_ggplot(img)
+```
+
+```{r}
+#magick image crop
+
+img %>% 
+  image_crop(geometry_area(0, 0, 20, 120)) %>% 
+  image_ggplot()
+```
+
+```{r}
+# recognize decimal and numeric
+
+num_only <- tesseract(
+  options = list(tessedit_char_whitelist = c(".0123456789 "))
+)
+
+prices <- img %>% 
+  image_crop(geometry_area(0, 0, 20, 120)) %>%
+  ocr(engine = num_only)
+  
+```
+
+```{r}
+wings_df <- prices %>% 
+  str_split(pattern = "\n") %>% 
+  data.frame() %>% 
+  rename("prices" = 1) %>% # first column 
+  mutate(prices = str_squish(prices)) %>%  # remove extra white spaces
+  separate(prices, into = c("units_1", "price_1", "units_2", "price_2"),
+           sep = " ") 
+  
+  
+```
+
+# str_squish looks b/w strings for excess white space
+

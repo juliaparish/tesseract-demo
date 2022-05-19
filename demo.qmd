@@ -11,7 +11,7 @@ execute:
 
 A bit of 2018 history: A weird obsession emerges surrounding [Danny's Wok chicken wings pricing](https://www.boredpanda.com/chicken-wing-pricing-structure-math-graps-formulas/?utm_source=google&utm_medium=organic&utm_campaign=organic).
 
-Here's the menu that created an uproar: 
+Here's the menu that created an uproar:
 
 ```{r}
 #| echo: false
@@ -20,19 +20,19 @@ knitr::include_graphics("chicken-wings.jpg")
 
 A few things to notice about this menu:
 
-- It's an image (JPG)
-- Non-selectable text
-- We want to do some analysis
+-   It's an image (JPG)
+-   Non-selectable text
+-   We want to do some analysis
 
-Our question: How can we get this information into a format that we can more easily work with, without manually entering into a new spreadsheet? 
+Our question: How can we get this information into a format that we can more easily work with, without manually entering into a new spreadsheet?
 
 ## OCR: Optical character recognition
 
-Optical character recognition extracts text information from images. 
+Optical character recognition extracts text information from images.
 
-The [`tesseract` R package](https://cran.r-project.org/web/packages/tesseract/vignettes/intro.html) provides access to [Google's OCR engine](https://opensource.google/projects/tesseract). You can combine it with helpful image processing tools from [`magick`](https://ropensci.r-universe.dev/articles/magick/intro.html). 
+The [`tesseract` R package](https://cran.r-project.org/web/packages/tesseract/vignettes/intro.html) provides access to [Google's OCR engine](https://opensource.google/projects/tesseract). You can combine it with helpful image processing tools from [`magick`](https://ropensci.r-universe.dev/articles/magick/intro.html).
 
-### Attach packages: 
+### Attach packages:
 
 ```{r}
 library(tidyverse)
@@ -40,7 +40,7 @@ library(magick)
 library(tesseract)
 ```
 
-### Get the image & take a look: 
+### Get the image & take a look:
 
 ```{r}
 img <- image_read("chicken-wings.jpg")
@@ -104,5 +104,5 @@ ggplot(data = full_menu) +
 
 ## More information / examples
 
-- Tom Mock's [blog post](https://themockup.blog/posts/2021-01-18-reading-tables-from-images-with-magick/)
-- [Jeroen Ooms' example](https://www.r-bloggers.com/2017/08/tesseract-and-magick-high-quality-ocr-in-r/) with some pre-processing using `magick`
+-   Tom Mock's [blog post](https://themockup.blog/posts/2021-01-18-reading-tables-from-images-with-magick/)
+-   [Jeroen Ooms' example](https://www.r-bloggers.com/2017/08/tesseract-and-magick-high-quality-ocr-in-r/) with some pre-processing using `magick`
